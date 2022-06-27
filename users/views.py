@@ -57,11 +57,63 @@ class UsersListCreateView(APIView):
             return Response(data)
         except Exception as err:
             return Response({'error2': str(err)})
-class
+
+
+class UserRetrieveView(APIView):
     # get user by id
-    def get_by_id(self, *args, **kwargs):
+    def get(self, *args, **kwargs):
         id_user = kwargs.get('pk')
         try:
-
+            users: list[User] = read_file()
+            for user in users:
+                if user['id'] == id_user:
+                    return Response(user)
+            return Response('not found user with this id')
         except Exception as err:
-            return Response({'error2': str(err)})
+            return Response({'error3': str(err)})
+
+    # update user by id
+    def put(self, *args, **kwargs):
+        id_user = kwargs.get('pk')
+        new_user = self.request.data
+        try:
+            users: list[User] = read_file()
+            for index, value in enumerate(users):
+                if value['id'] == id_user:
+                    index1 = index
+                    users[index1] = {'id': id_user, **new_user}
+                    write_file(users)
+                    return Response(users[index1])
+
+            return Response('not found user with this id')
+        except Exception as err:
+            return Response({'error4': str(err)})
+
+    # update some pahrams of user by id
+    def patch(self, *args, **kwargs):
+        try:
+            id_user = kwargs.get('pk')
+            users: list[User] = read_file()
+            new_user = self.request.data
+            for user in users:
+                if user['id'] == id_user:
+                    user.update(**new_user)
+                    write_file(users)
+                    return Response(user)
+            return Response('not found user with this id')
+        except Exception as err:
+            return Response({'error5': str(err)})
+
+    # delete user by id
+    def delete(self, *args, **kwargs):
+        try:
+            id_user = kwargs.get('pk')
+            users: list[User] = read_file()
+            for index, value in enumerate(users):
+                if value['id'] == id_user:
+                    del users[index]
+                    write_file(users)
+                    return Response(f'{users[index]} - deleted')
+            return Response('not found user with this id')
+        except Exception as err:
+            return Response({'error6': str(err)})

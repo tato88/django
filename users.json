@@ -1,1 +1,1 @@
-[{"name": "max", "age": 51, "id": 1}, {"name": "kokos", "age": 15, "id": 2}]
+[{"id": 1, "name": "vasya", "age": 22, "status": true}, {"id": 2, "status": true}, {"name": "cat", "age": 22, "id": 4}]
