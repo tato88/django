@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'rest_framework',
 
     #Apps
-    'hw1',
-    'hw1'
 ]
 
 MIDDLEWARE = [
