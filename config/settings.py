@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     #Apps
-    'first',
+    'hw1',
     'hw1'
 ]
 
