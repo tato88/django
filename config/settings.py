@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     #Apps
     'first',
+    'hw1'
 ]
 
 MIDDLEWARE = [
